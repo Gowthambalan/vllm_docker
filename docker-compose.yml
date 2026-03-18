@@ -1,0 +1,27 @@
+
+services:
+  vllm:
+    image: vllm/vllm-openai:latest
+    container_name: vllm_small
+    ports:
+      - "8000:8000" 
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - HUGGING_FACE_HUB_TOKEN=${HF_TOKEN}
+    command: >
+      --model Qwen/Qwen2.5-0.5B-Instruct
+      --dtype float16
+      --max-model-len 2048
+      --gpu-memory-utilization 0.5
+      --max-num-seqs 4
+      --swap-space 1
+    volumes:
+      - ~/.cache/huggingface:/root/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped

@@ -1,0 +1,18 @@
+type docker-compose.yml
+
+
+
+http://localhost:8000/v1/chat/completions
+
+
+{
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "messages": [
+    {
+      "role": "user",
+      "content": "What is 2+2?"
+    }
+  ],
+  "max_tokens": 100,
+  "temperature": 0.7
+}
