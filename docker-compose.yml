@@ -7,7 +7,7 @@ services:
       - "8000:8000" 
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
-      - HUGGING_FACE_HUB_TOKEN=${HF_TOKEN}
+      - HUGGING_FACE_HUB_TOKEN=${HF_TOKEN} 
     command: >
       --model Qwen/Qwen2.5-0.5B-Instruct
       --dtype float16
